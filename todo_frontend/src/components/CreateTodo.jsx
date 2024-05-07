@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-export default function CreateTodo() {
+export default function CreateTodo({setTodos}) {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
 
@@ -16,8 +16,9 @@ export default function CreateTodo() {
                     description: description
                 })
             });
-            // Handle response
-            
+            const updatedTodos=await fetch("http://localhost:3000/todos");
+            const newTodoList=await updatedTodos.json();
+            setTodos(newTodoList.todos);
         } catch (error) {
             console.log("Error " + error.message);
         }

@@ -1,14 +1,5 @@
-import React, { useEffect, useState } from 'react'
 
-function DisplayTodos() {
-    const [todos,setTodos]=useState([]);
-    useEffect(()=>{
-        fetch("http://localhost:3000/todos")
-        .then(async function(response){
-            const data=await response.json();
-            setTodos(data.todos);
-        })
-    },[])
+function DisplayTodos({todos}) {
   return (
     <div>
       {todos.map((todo)=>(
