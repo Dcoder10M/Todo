@@ -1,4 +1,4 @@
-## Full Stack Todo Application
+## Full Stack Todo Application.
 
 - User can see todos
 - User can create todo
