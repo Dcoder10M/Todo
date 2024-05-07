@@ -3,8 +3,10 @@ const express=require('express');
 const { todoSchema, updateTodoSchema } = require('./inputValidation');
 const Todo = require('./db');
 const app=express();
+const cors=require('cors');
 
 app.use(express.json());
+app.use(cors());
 
 app.get("/todos",async function(req,res){
     try{
