@@ -33,7 +33,7 @@ app.post("/createTodo",async function(req,res){
             description:req.body.description,
             completed:false
         })
-        res.json({
+        res.status(200).json({
             msg:"Todo created successfully"
         })
     }
