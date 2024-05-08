@@ -123,3 +123,6 @@ z-index:5;
   -ms-transform-origin: 50% 100%;
   -o-transform-origin: 50% 100%;
 }
+.strikeOut{
+  text-decoration: line-through;
+}
