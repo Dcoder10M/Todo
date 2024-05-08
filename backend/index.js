@@ -42,12 +42,23 @@ app.post("/createTodo",async function(req,res){
     }
 })
 
-app.put("updateTodo",function(req,res){
+app.put("/updateTodo",async function(req,res){
     const check=updateTodoSchema.safeParse(req.body);
     if(!check.success){
         res.status(400).json({
             message:"Incorrect inputs"
         });
+    }
+    try{
+        const todoToBeUpdated=await Todo.findById(req.body.id);
+        console.log(todoToBeUpdated);
+        todoToBeUpdated.completed=!todoToBeUpdated.completed;
+        await todoToBeUpdated.save();
+        return res.status(200).json({
+            message: "Todo item updated successfully"
+        });
+    }catch(error){
+        console.log("DB error while updating todo "+error.message);
     }
 })
 
