@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
-export default function CreateTodo({setTodos}) {
+export default function CreateTodo({todos,setTodos}) {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
 
     async function createTodo() {
         try {
-            const response = await fetch("http://localhost:3000/createTodo", {
+            await fetch("http://localhost:3000/createTodo", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -16,19 +16,24 @@ export default function CreateTodo({setTodos}) {
                     description: description
                 })
             });
-            const updatedTodos=await fetch("http://localhost:3000/todos");
-            const newTodoList=await updatedTodos.json();
-            setTodos(newTodoList.todos);
+            setTodos([...todos,{
+                title,
+                description
+            }]);
         } catch (error) {
             console.log("Error " + error.message);
         }
     }
 
     return (
-        <div>
-            <input type="text" placeholder='title' value={title} onChange={(e) => setTitle(e.target.value)} />
-            <input type="text" placeholder='description' value={description} onChange={(e) => setDescription(e.target.value)} />
-            <button onClick={createTodo}>Create Todo</button>
+        <div className="container-fluid mt-4 mb-4 d-flex justify-content-center">
+            <form className="form-inline">
+                <label className="m-2 font-weight-bold">Title</label>
+                <input type="text" className="form-control m-2" placeholder='Enter title here' value={title} onChange={(e) => setTitle(e.target.value)} />
+                <label className="m-2 font-weight-bold">Description</label>
+                <textarea type="text" className="form-control m-2" placeholder='Enter description here' value={description} onChange={(e) => setDescription(e.target.value)} style={{ resize: 'both' }}/>
+                <button className="btn btn-primary m-2" onClick={createTodo}>Create Todo</button>
+            </form>
         </div>
         );
 }

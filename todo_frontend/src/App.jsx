@@ -12,10 +12,10 @@ function App() {
     })
   },[])
   return (
-    <>
-      <CreateTodo setTodos={setTodos}/>
+    <div className="container">
+      <CreateTodo todos={todos} setTodos={setTodos}/>
       <DisplayTodos todos={todos}/>
-    </>
+    </div>
   )
 }
 
