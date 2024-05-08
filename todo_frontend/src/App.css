@@ -1,6 +1,8 @@
 body {
   /* margin: 20px auto; */
-  font-family: "Lato";
+  font-family: "Mukta", sans-serif;
+  font-weight: 400;
+  font-style: normal;
   background: #333;
 }
 label{
@@ -42,7 +44,7 @@ p {
   background:#ccf;
 }
 .cardd:hover,.card:focus{
-box-shadow:10px 10px 7px rgba(0,0,0,.7);
+box-shadow:10px 10px 7px rgba(0,0,0);
 transform: scale(1.25);
 position:relative;
 z-index:5;

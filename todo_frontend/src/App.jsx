@@ -6,7 +6,7 @@ import './App.css'
 function App() {
   const [todos,setTodos]=useState([]);
   useEffect(()=>{
-    fetch("http://localhost:3000/todos").then(async(response)=>{
+    fetch("https://todoserver-j3ts.onrender.com/todos").then(async(response)=>{
       const todoArray=await response.json();
       setTodos(todoArray.todos);
     })
