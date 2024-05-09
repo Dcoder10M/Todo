@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import axios from 'axios';
 
 export default function CreateTodo({todos,setTodos}) {
     const [title, setTitle] = useState("");
@@ -6,19 +7,16 @@ export default function CreateTodo({todos,setTodos}) {
 
     async function createTodo() {
         try {
-            await fetch("https://todoserver-j3ts.onrender.com/createTodo", {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    title: title,
-                    description: description
-                })
+            const response=await axios.post("http://localhost:3000/createTodo", {
+                title: title,
+                description: description
             });
+            const msg=await response.json();
+            console.log(msg);
             setTodos([...todos,{
                 title,
-                description
+                description,
+                completed:false
             }]);
         } catch (error) {
             console.log("Error " + error.message);

@@ -2,14 +2,14 @@ import { useState } from "react";
 
 function DisplayTodos({ todos,setTodos }) {
   async function strikeOut(id){
-    await fetch('https://todoserver-j3ts.onrender.com/updateTodo', {
+    await fetch('http://localhost:3000/updateTodo', {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({ id: id })
     });
-    const response = await fetch('https://todoserver-j3ts.onrender.com/todos');
+    const response = await fetch('http://localhost:3000/todos');
     const updatedTodos=await response.json();
     setTodos(updatedTodos.todos);
   }
